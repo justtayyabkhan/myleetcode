@@ -35,7 +35,6 @@ public:
             }
             else if(ans>threshold) 
             {
-            res=max(mid,res);
             low=mid+1;
             }
 
