@@ -1,31 +1,19 @@
 class Solution {
 public:
-    bool findele(vector<int> arr,int target)
-    {
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int n=matrix.size();
+        int m=matrix[0].size();
         int low=0;
-        int high=arr.size()-1;
-        bool ans=false;
+        int high=(m*n)-1;
         while(low<=high)
         {
             int mid=(low+high)/2;
-            if(arr[mid]==target)
-            {
-                return true;
-            }
-            else if(arr[mid]>target) high=mid-1;
+            int row=mid/m;
+            int col=mid%m;
+            if(matrix[row][col]==target) return true;
+            else if(target<matrix[row][col]) high=mid-1;
             else low=mid+1;
         }
         return false;
-    }
-    bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int m=matrix.size();
-        int n=matrix[0].size();
-        bool ans=false;
-        for(int i=0;i<m;i++)
-        {
-            ans=findele(matrix[i],target);
-            if(ans==true) return true;
-        }
-        return ans;
     }
 };
