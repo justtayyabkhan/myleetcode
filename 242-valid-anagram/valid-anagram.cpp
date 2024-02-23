@@ -1,11 +1,14 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
+    //METHOD 1
         // sort(s.begin(),s.end());
         // sort(t.begin(),t.end());
         // if(s==t) return true;
         // return false;
-        if(s.size()!=t.size()) return false;
+
+    // METHOD 2
+       if(s.size()!=t.size()) return false;
        vector<int> map1(26,0); 
        vector<int> map2(26,0); 
        int sum1=0;
