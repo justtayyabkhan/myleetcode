@@ -1,50 +1,51 @@
 class Solution {
 public:
-bool KMP(string haystack, string needle) {
-      int m=haystack.size();
-      int n=needle.size();
-     vector<int> lps(needle.size(),0);
-     int prefix=0;
-     int suffix=1;
-     while(suffix<needle.size())
-     {
-         if(needle[suffix]==needle[prefix])
-         {
-             lps[suffix]=prefix+1;
-             suffix++;
-             prefix++;
-         }
-         else
-         {
-             if(prefix==0)
-             {
-                 lps[suffix]=0;
-                 suffix++;
-             }
-             else
-             {
-                 prefix=lps[prefix-1];
-             }
-         }
-     }
-     int first=0;
-     int second=0;
-    while(first<m && second<n)
-     {
-         if( haystack[first]==needle[second])
-         {
-             first++;
-             second++;
-         }
-         else
-         {  
-             if(second==0) first++;
-             else second=lps[second-1];
-         }
-     }
-         if(second==n) return true;
-         else return false;
+bool KMP(string x,string y)
+{
+    int m=x.size();
+    int n=y.size();
+    int prefix=0;
+    int suffix=1;
+    vector<int> lps(n,0);
+    while(suffix<n)
+    {
+        if(x[prefix]==y[suffix])
+        {
+            lps[suffix]=prefix+1;
+            prefix++;
+            suffix++;   
+        }
+        else
+        {
+            if(prefix==0)
+            {
+                lps[suffix]=0;
+                suffix++;
+            }
+            else
+            {
+                prefix=lps[prefix-1];
+            }
+        }
     }
+    int first=0;
+    int second=0;
+    while(first<m && second<n)
+    {
+        if(x[first]==y[second])
+        {
+            first++;
+            second++;
+        }
+        else
+        {
+            if(second==0) first++;
+            else second=lps[second-1];
+        }
+    }
+    if(second==n) return true;
+    else return false;
+}
     int repeatedStringMatch(string a, string b) {
         string str=a;
         int count=1;
