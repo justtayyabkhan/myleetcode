@@ -13,23 +13,15 @@ public:
     ListNode* middleNode(ListNode* head) {
         if(head==NULL) return head;
         ListNode* temp=head;
-        int cnt=0;
-        while(temp!=NULL)
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL)
         {
-            cnt++;
-            temp=temp->next;
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        if(cnt%2==1) cnt=(cnt/2)+1;
-        else cnt=cnt/2+1;
-        int cnt2=0;
-        temp=head;
-        while(temp!=NULL)
-        {
-            cnt2++;
-            if(cnt==cnt2) return temp;
-            temp=temp->next;
-        }
-        return temp;
+        return slow;
+        
         
     }
 };
