@@ -10,23 +10,20 @@
  */
 class Solution {
 public:
-ListNode *deleteindex(ListNode *head, int k)
+ListNode *deleteindex(ListNode *head, ListNode* mid)
 {
     if (head == NULL)
         return head;
-    if (k == 1)
+    if (head == mid)
     {
-        ListNode *temp = head;
         head = head->next;
         return head;
     }
     ListNode *temp = head;
     ListNode *prev = NULL;
-    int cnt = 0;
     while (temp != NULL)
     {
-        cnt++;
-        if (cnt == k)
+        if (temp == mid)
         {
             prev->next = prev->next->next;
             break;
@@ -37,16 +34,14 @@ ListNode *deleteindex(ListNode *head, int k)
     return head;
 }
     ListNode* deleteMiddle(ListNode* head) {
-        ListNode* temp=head;
-        int sz=0;
-        while(temp!=NULL)
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL)
         {
-            temp=temp->next;
-            sz++;
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        temp=head;
-        int index=(sz/2)+1;
-        return deleteindex(head,index);
+        return deleteindex(head,slow);
 
     }
 };
